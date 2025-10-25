@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% block content %}
+  <section id="hero">
+    <h1>Hi, I'm Brian</h1>
+    <img class="headshot"
+         src="https://briangaudino.dev/images/me-small.jpg"
+         alt="me"
+         width="200"
+         height="200">
+    <p>I'm a Senior Software Engineer.</p>
+  </section>
+  <section id="about">
+    <h2>About Me</h2>
+    <p>
+      I'm a Developer based in Chicago. As a self-taught programmer with a background in music, I bring a muli-disciplinary mindset to my work. I'm currently working as a Senior Software Engineer at Fusionbox. I specialize in Django and React, but I'm I am always excited to learn new technologies.
+    </p>
+  </section>
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="grid">
+      {% for project in projects %}
+        <article>
+          <header>
+            <a href="{{ project.url }}"><strong>{{ project.name }}</strong></a>
+          </header>
+          <p>{{ project.description }}</p>
+          <footer>
+            {% if project.url %}
+              <a role="button"
+                 class="outline"
+                 href="{{ project.url }}"
+                 target="_blank">View Project</a>
+            {% endif %}
+            {% if project.repository_url %}
+              <a role="button" class="outline" href="{{ project.repository_url }}">View Code</a>
+            {% endif %}
+          </footer>
+        </article>
+      {% endfor %}
+    </div>
+  </section>
+  <section id="resume">
+    <h2>Resume</h2>
+    <article>
+      <header>
+        Work Experience
+      </header>
+      {% for job in jobs %}
+        <details>
+          <summary>
+            <strong>{{ job.company }}</strong> - {{ job.title }}
+          </summary>
+          <p>{{ job.description }}</p>
+        </details>
+        <hr>
+      {% endfor %}
+    </article>
+    <article>
+      <header>
+        Education
+      </header>
+      {% for education in educations %}
+        <details>
+          <summary>
+            <strong>{{ education.institution }}</strong> - {{ education.degree }}
+          </summary>
+          <p>{{ education.description }}</p>
+        </details>
+        <hr>
+      {% endfor %}
+    </article>
+  </section>
+{% endblock %}
