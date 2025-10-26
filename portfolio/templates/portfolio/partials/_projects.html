@@ -5,13 +5,23 @@
       <article>
         <h3>
           {% if project.url %}
-            <a href="{{ project.url }}" target="_blank"><strong>{{ project.name }}</strong></a>
+            <a class="code-wrapper" href="{{ project.url }}" target="_blank"><strong>{{ project.name }}</strong></a>
           {% elif project.repository_url %}
-            <a href="{{ project.repository_url }}" target="_blank"><strong>{{ project.name }}</strong></a>
+            <a class="code-wrapper"
+               href="{{ project.repository_url }}"
+               target="_blank"><strong>{{ project.name }}</strong></a>
           {% else %}
             <strong>{{ project.name }}</strong>
           {% endif %}
         </h3>
+        {% if project.image %}
+          <figure>
+            <img src="{{ project.image }}"
+                 alt="{{ project.name }} image"
+                 height="auto"
+                 width="100%">
+          </figure>
+        {% endif %}
         <p>{{ project.description }}</p>
         <div class="actions">
           {% if project.url %}

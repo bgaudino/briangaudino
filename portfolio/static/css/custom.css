@@ -13,7 +13,26 @@ a i {
 }
 
 #projects article p {
+  margin-top: 1rem;
   min-height: 5rem;
+}
+
+#projects article h3 {
+  text-align: center;
+}
+
+#projects article figure {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+#projects article figure img {
+  border-radius: 0.5rem;
+}
+
+.code-wrapper {
+  text-decoration: none;
 }
 
 .code-wrapper:hover {
