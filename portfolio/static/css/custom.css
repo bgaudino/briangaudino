@@ -3,6 +3,10 @@ nav a {
   color: inherit;
 }
 
+a i {
+  margin-left: 0.5rem;
+}
+
 #projects article .actions {
   display: flex;
   justify-content: space-between;
