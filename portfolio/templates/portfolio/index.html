@@ -20,21 +20,14 @@
     <div class="grid">
       {% for project in projects %}
         <article>
-          <header>
+          <h3>
             <a href="{{ project.url }}"><strong>{{ project.name }}</strong></a>
-          </header>
+          </h3>
           <p>{{ project.description }}</p>
-          <footer>
-            {% if project.url %}
-              <a role="button"
-                 class="outline"
-                 href="{{ project.url }}"
-                 target="_blank">View Project</a>
-            {% endif %}
-            {% if project.repository_url %}
-              <a role="button" class="outline" href="{{ project.repository_url }}">View Code</a>
-            {% endif %}
-          </footer>
+          <div class="actions">
+            {% if project.url %}<a role="button" href="{{ project.url }}" target="_blank">View Project</a>{% endif %}
+            {% if project.repository_url %}<a role="button" href="{{ project.repository_url }}">View Code</a>{% endif %}
+          </div>
         </article>
       {% endfor %}
     </div>

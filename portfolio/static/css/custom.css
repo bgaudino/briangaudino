@@ -1,4 +1,4 @@
-#projects article footer {
+#projects article .actions {
   display: flex;
   justify-content: space-between;
 }
