@@ -1,0 +1,44 @@
+<section id="resume">
+  <h2>Resume</h2>
+  <article>
+    <header>
+      Work Experience
+    </header>
+    {% for job in jobs %}
+      <details>
+        <summary>
+          <strong>{{ job.company }}</strong> - {{ job.title }}
+        </summary>
+        <p>{{ job.description }}</p>
+      </details>
+      <hr>
+    {% endfor %}
+  </article>
+  <article>
+    <header>
+      Education
+    </header>
+    {% for education in educations %}
+      <details>
+        <summary>
+          <strong>{{ education.institution }}</strong> - {{ education.degree }}
+        </summary>
+        <p>{{ education.description }}</p>
+      </details>
+      <hr>
+    {% endfor %}
+  </article>
+  <article>
+    <header>
+      Skills
+    </header>
+    {% for skill in skills %}
+      <div class="skill">
+        <strong>{{ skill.name }}</strong>
+        <div class="bar">
+          <div class="level" data-level="{{ skill.proficiency }}"></div>
+        </div>
+      </div>
+    {% endfor %}
+  </article>
+</section>

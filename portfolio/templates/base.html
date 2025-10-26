@@ -8,28 +8,34 @@
     <link rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
     <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+    <script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.8/dist/htmx.min.js"
+            defer></script>
+    <script src="{% static 'js/skills.js' %}" defer></script>
     {% block extrahead %}{% endblock %}
   </head>
   <body>
     <header class="container">
-      <nav>
+      <nav hx-target="main" hx-swap="innerHTML" hx-push-url="true">
         <ul>
           <li>
-            <a href="{% url 'index' %}"><strong>Brian Gaudino</strong></a>
+            <a href="{% url 'index' %}" hx-get="{% url 'index' %}"><strong>Brian Gaudino</strong></a>
           </li>
         </ul>
         <ul>
           <li>
-            <a class="code-wrapper" href="{% url 'index' %}#about">About</a>
+            <a class="code-wrapper"
+               href="{% url 'projects' %}"
+               hx-get="{% url 'projects' %}">Projects</a>
           </li>
           <li>
-            <a class="code-wrapper" href="{% url 'index' %}#projects">Projects</a>
+            <a class="code-wrapper"
+               href="{% url 'resume' %}"
+               hx-get="{% url 'resume' %}">Resume</a>
           </li>
           <li>
-            <a class="code-wrapper" href="{% url 'index' %}#resume">Resume</a>
-          </li>
-          <li>
-            <a class="code-wrapper" href="{% url 'contact' %}">Contact</a>
+            <a class="code-wrapper"
+               href="{% url 'contact' %}"
+               hx-get="{% url 'contact' %}">Contact</a>
           </li>
         </ul>
       </nav>

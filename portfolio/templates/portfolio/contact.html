@@ -1,13 +1,4 @@
 {% extends "base.html" %}
 {% block content %}
-  <section id="contact">
-    <h2>Contact Me</h2>
-    <article>
-      <form method="post">
-        {% csrf_token %}
-        {{ form }}
-        <button type="submit">Send Message</button>
-      </form>
-    </article>
-  </section>
+  {% include "portfolio/partials/_contact.html" %}
 {% endblock %}

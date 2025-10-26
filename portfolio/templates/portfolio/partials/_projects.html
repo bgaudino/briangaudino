@@ -1,0 +1,25 @@
+<section id="projects">
+  <h2>Projects</h2>
+  <div class="grid">
+    {% for project in projects %}
+      <article>
+        <h3>
+          {% if project.url %}
+            <a href="{{ project.url }}" target="_blank"><strong>{{ project.name }}</strong></a>
+          {% elif project.repository_url %}
+            <a href="{{ project.repository_url }}" target="_blank"><strong>{{ project.name }}</strong></a>
+          {% else %}
+            <strong>{{ project.name }}</strong>
+          {% endif %}
+        </h3>
+        <p>{{ project.description }}</p>
+        <div class="actions">
+          {% if project.url %}<a role="button" href="{{ project.url }}" target="_blank">View Project</a>{% endif %}
+          {% if project.repository_url %}
+            <a role="button" href="{{ project.repository_url }}" target="_blank">View Code</a>
+          {% endif %}
+        </div>
+      </article>
+    {% endfor %}
+  </div>
+</section>

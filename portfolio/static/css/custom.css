@@ -12,10 +12,6 @@ nav a {
   min-height: 5rem;
 }
 
-#hero {
-  min-height: 100vh;
-}
-
 .code-wrapper:hover {
   text-decoration: none !important;
 }
