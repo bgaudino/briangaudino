@@ -5,11 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Brian Gaudino</title>
-    <link rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+    <link rel="stylesheet" href="{% static 'vendor/css/pico.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/custom.css' %}">
-    <script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.8/dist/htmx.min.js"
-            defer></script>
+    <script src="{% static 'vendor/js/htmx.min.js' %}" defer></script>
     <script src="{% static 'js/skills.js' %}" defer></script>
     {% block extrahead %}{% endblock %}
   </head>
