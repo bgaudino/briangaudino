@@ -3,7 +3,21 @@
   <article>
     <form method="post">
       {% csrf_token %}
-      {{ form }}
+      <div class="grid">
+        <div>
+          {{ form.name.label_tag }}
+          {{ form.name }}
+          {% for error in form.name.errors %}<small>{{ error }}</small>{% endfor %}
+        </div>
+        <div>
+          {{ form.email.label_tag }}
+          {{ form.email }}
+          {% for error in form.email.errors %}<small>{{ error }}</small>{% endfor %}
+        </div>
+      </div>
+      {{ form.message.label_tag }}
+      {{ form.message }}
+      {% for error in form.message.errors %}<small>{{ error }}</small>{% endfor %}
       <button type="submit">Send Message</button>
     </form>
   </article>
