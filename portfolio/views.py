@@ -3,7 +3,7 @@ from django.views.generic import CreateView, TemplateView
 from django.utils.decorators import method_decorator
 
 from portfolio.forms import ContactForm
-from portfolio.models import Education, Job, Project
+from portfolio.models import Education, Job, Project, Skill
 
 
 @method_decorator(cache_page(None), name="dispatch")
@@ -15,6 +15,7 @@ class IndexView(TemplateView):
         context["projects"] = Project.objects.published()
         context["jobs"] = Job.objects.published()
         context["educations"] = Education.objects.published()
+        context["skills"] = Skill.objects.published()
         return context
 
 

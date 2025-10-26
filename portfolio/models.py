@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 from admin_ordering.models import OrderableModel
 
@@ -49,7 +50,9 @@ class Education(PublishableModel):
 
 class Skill(PublishableModel, OrderableModel):
     name = models.CharField()
-    proficiency = models.CharField()
+    proficiency = models.IntegerField(
+        validators=[MinValueValidator(0), MaxValueValidator(10)]
+    )
 
     class Meta(OrderableModel.Meta):
         pass

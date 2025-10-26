@@ -1,4 +1,8 @@
 {% extends "base.html" %}
+{% load static %}
+{% block extrahead %}
+  <script src="{% static 'js/skills.js' %}" defer></script>
+{% endblock %}
 {% block content %}
   <section id="hero">
     <h1>Hi, I'm Brian</h1>
@@ -62,6 +66,21 @@
           <p>{{ education.description }}</p>
         </details>
         <hr>
+      {% endfor %}
+    </article>
+  </section>
+  <section id="skills">
+    <article>
+      <header>
+        Skills
+      </header>
+      {% for skill in skills %}
+        <div class="skill">
+          <strong>{{ skill.name }}</strong>
+          <div class="bar">
+            <div class="level" data-level="{{ skill.proficiency }}"></div>
+          </div>
+        </div>
       {% endfor %}
     </article>
   </section>

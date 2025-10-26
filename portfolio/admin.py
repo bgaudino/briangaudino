@@ -44,3 +44,9 @@ class EducationAdmin(PublishableAdmin):
 @admin.register(models.Job)
 class JobAdmin(PublishableAdmin):
     list_display = ["company", "title", "date_started", "date_ended"]
+
+
+@admin.register(models.Skill)
+class SkillAdmin(PublishableAdmin, OrderableAdmin):
+    list_display = ["name", "proficiency", "ordering"]
+    list_editable = ["proficiency", "ordering"]
