@@ -5,9 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Brian Gaudino</title>
-    <link rel="stylesheet" href="{% static 'vendor/css/pico.min.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/pico/css/pico.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/custom.css' %}">
-    <script src="{% static 'vendor/js/htmx.min.js' %}" defer></script>
+    <link rel="stylesheet"
+          href="{% static 'vendor/fontawesome/css/all.min.css' %}">
+    <script src="{% static 'js/theme.js' %}"></script>
+    <script src="{% static 'vendor/htmx/js/htmx.min.js' %}" defer></script>
     <script src="{% static 'js/skills.js' %}" defer></script>
     {% block extrahead %}{% endblock %}
   </head>
@@ -34,6 +37,9 @@
             <a class="code-wrapper"
                href="{% url 'contact' %}"
                hx-get="{% url 'contact' %}">Contact</a>
+          </li>
+          <li>
+            <a href="#" id="theme-toggle"><i class="fa-solid fa-circle-half-stroke"></i></a>
           </li>
         </ul>
       </nav>
