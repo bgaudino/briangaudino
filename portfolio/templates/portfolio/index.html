@@ -26,7 +26,9 @@
           <p>{{ project.description }}</p>
           <div class="actions">
             {% if project.url %}<a role="button" href="{{ project.url }}" target="_blank">View Project</a>{% endif %}
-            {% if project.repository_url %}<a role="button" href="{{ project.repository_url }}">View Code</a>{% endif %}
+            {% if project.repository_url %}
+              <a role="button" href="{{ project.repository_url }}" target="_blank">View Code</a>
+            {% endif %}
           </div>
         </article>
       {% endfor %}
