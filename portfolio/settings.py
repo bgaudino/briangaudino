@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "admin_ordering",
+    "ai_chat",
+    "ai_chat.prompts",
     "portfolio",
 ]
 
@@ -123,3 +125,10 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+AI_CHAT = {
+    "PROVIDER": "google",
+    "MODEL": "gemini-2.5-flash-lite",
+    "API_KEY": os.getenv("GOOGLE_API_KEY"),
+    "PLACEHOLDER": "Ask about Brian",
+}
