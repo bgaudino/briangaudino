@@ -3,7 +3,21 @@ from django.db import models
 from admin_ordering.models import OrderableModel
 
 
-class Job(models.Model):
+class PublishableQuerySet(models.QuerySet):
+    def published(self):
+        return self.filter(is_published=True)
+
+
+class PublishableModel(models.Model):
+    is_published = models.BooleanField(default=True)
+
+    objects = PublishableQuerySet.as_manager()
+
+    class Meta:
+        abstract = True
+
+
+class Job(PublishableModel):
     title = models.CharField()
     company = models.CharField()
     location = models.CharField()
@@ -18,7 +32,7 @@ class Job(models.Model):
         return f"{self.title} at {self.company} ({self.location})"
 
 
-class Education(models.Model):
+class Education(PublishableModel):
     institution = models.CharField()
     degree = models.CharField()
     field_of_study = models.CharField()
@@ -33,15 +47,18 @@ class Education(models.Model):
         return f"{self.degree} in {self.field_of_study} from {self.institution}"
 
 
-class Skill(OrderableModel):
+class Skill(PublishableModel, OrderableModel):
     name = models.CharField()
     proficiency = models.CharField()
+
+    class Meta(OrderableModel.Meta):
+        pass
 
     def __str__(self):
         return f"{self.name} ({self.proficiency})"
 
 
-class Project(OrderableModel):
+class Project(PublishableModel, OrderableModel):
     name = models.CharField(unique=True)
     description = models.TextField()
     url = models.URLField(blank=True)
@@ -49,13 +66,19 @@ class Project(OrderableModel):
     image = models.CharField(blank=True)
     technologies = models.JSONField(default=list, blank=True)
 
+    class Meta(OrderableModel.Meta):
+        pass
+
     def __str__(self):
         return self.name
 
 
-class Interest(OrderableModel):
+class Interest(PublishableModel, OrderableModel):
     name = models.CharField(unique=True)
     description = models.TextField(blank=True)
+
+    class Meta(OrderableModel.Meta):
+        pass
 
     def __str__(self):
         return self.name

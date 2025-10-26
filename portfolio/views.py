@@ -12,9 +12,9 @@ class IndexView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["projects"] = Project.objects.all()
-        context["jobs"] = Job.objects.all()
-        context["educations"] = Education.objects.all()
+        context["projects"] = Project.objects.published()
+        context["jobs"] = Job.objects.published()
+        context["educations"] = Education.objects.published()
         return context
 
 
