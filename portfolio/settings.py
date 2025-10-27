@@ -14,6 +14,7 @@ from pathlib import Path
 import os
 
 import dj_database_url
+from csp.constants import SELF
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -43,6 +44,7 @@ INSTALLED_APPS = [
     "admin_ordering",
     "ai_chat",
     "ai_chat.prompts",
+    "csp",
     "django_jsonform",
     "portfolio",
 ]
@@ -56,6 +58,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "csp.middleware.CSPMiddleware",
     "portfolio.middleware.htmx_middleware",
 ]
 
@@ -138,3 +141,16 @@ STATIC_ROOT = BASE_DIR / "static"
 
 MEDIA_ROOT = BASE_DIR / "media"
 MEDIA_URL = "/media/"
+
+CONTENT_SECURITY_POLICY = {
+    "DIRECTIVES": {
+        "default-src": [SELF],
+        "style-src": [
+            SELF,
+            "https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css",
+            "'sha256-faU7yAF8NxuMTNEwVmBz+VcYeIoBQ2EMHW3WaVxCvnk='",  # htmx inline style
+        ],
+        "frame-ancestors": [SELF],
+        "form-action": [SELF],
+    },
+}

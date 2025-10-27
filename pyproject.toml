@@ -6,6 +6,7 @@ dependencies = [
     "dj-database-url>=3.0.1",
     "django-admin-ordering>=0.20.0",
     "django-ai-chat",
+    "django-csp>=4.0",
     "django-jsonform>=2.23.2",
     "django-reverse-relationship>=0.1.1",
     "django-storages[s3]>=1.14.6",
@@ -28,3 +29,6 @@ django-ai-chat = { git = "https://github.com/bgaudino/django-ai-chat" }
 
 [tool.djlint]
 indent = 2
+
+[tool.setuptools]
+py-modules = []
