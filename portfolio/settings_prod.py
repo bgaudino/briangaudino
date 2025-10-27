@@ -4,6 +4,8 @@ import os
 
 DEBUG = False
 
+ALLOWED_HOSTS = ["briangaudino-b57112662916.herokuapp.com"]
+
 STORAGES = {
     "default": {
         "BACKEND": "storages.backends.s3.S3Storage",
@@ -16,4 +18,11 @@ STORAGES = {
     "staticfiles": {
         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
     },
+}
+
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": os.getenv("REDISCLOUD_URL"),
+    }
 }

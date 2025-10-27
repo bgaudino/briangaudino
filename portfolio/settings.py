@@ -150,7 +150,7 @@ CONTENT_SECURITY_POLICY = {
             "https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css",
             "'sha256-faU7yAF8NxuMTNEwVmBz+VcYeIoBQ2EMHW3WaVxCvnk='",  # htmx inline style
         ],
-        "img-src": [SELF, "data:"],
+        "img-src": [SELF, "data:", "briangaudino-portfolio.s3.amazonaws.com"],
         "frame-ancestors": [SELF],
         "form-action": [SELF],
     },
