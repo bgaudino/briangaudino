@@ -20,8 +20,8 @@ dependencies = [
     "whitenoise>=6.11.0",
 ]
 
-[tool.uv]
-dev-dependencies = [
+[dependency-groups]
+dev = [
     "djlint>=1.36.4",
     "ollama>=0.6.0",
 ]
