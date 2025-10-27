@@ -1,12 +1,15 @@
 from pathlib import Path
 
+from django.core.cache import cache
 from django.views.decorators.cache import cache_page
 from django.views.decorators.vary import vary_on_headers
 from django.views.generic import CreateView, TemplateView
 from django.utils.decorators import method_decorator
 
 from portfolio.forms import ContactForm
-from portfolio.models import Content, Education, Job, Project, Technology
+from portfolio.models import Content, Education, Interest, Job, Project, Technology
+
+from ai_chat.views import ChatView as AIChatView
 
 
 class HTMXMixin:
@@ -61,3 +64,24 @@ class ContactView(HTMXMixin, CreateView):
     template_name = "portfolio/contact.html"
     form_class = ContactForm
     success_url = "/"
+
+
+CHAT_CACHE_KEY = "custom_ai_chat_system_prompt"
+
+
+class CustomChatView(AIChatView):
+    def get_system_prompt(self):
+        from django.forms.models import model_to_dict
+
+        prompt = cache.get(CHAT_CACHE_KEY)
+        if prompt:
+            return prompt
+        prompt = super().get_system_prompt() or ""
+        prompt += "\n\nHere is some information about Brian:\n"
+        for model in (Job, Education, Technology, Project, Interest):
+            prompt += f"\n\n{model._meta.verbose_name_plural.title()}:\n"
+            items = model.objects.published()
+            for item in items:
+                prompt += str(model_to_dict(item)) + "\n"
+        cache.set(CHAT_CACHE_KEY, prompt)
+        return prompt
