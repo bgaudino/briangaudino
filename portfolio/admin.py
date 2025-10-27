@@ -1,6 +1,7 @@
 from django.contrib import admin
 
 from admin_ordering.admin import OrderableAdmin
+from reverse_relationship.admin import ReverseRelationshipAdmin
 
 from portfolio import models
 
@@ -34,19 +35,57 @@ class ContactAdmin(admin.ModelAdmin):
 class ProjectAdmin(OrderableAdmin, PublishableAdmin):
     list_display = ["name", "ordering"]
     list_editable = ["ordering"]
+    filter_horizontal = ["tech_stack"]
+    fields = [
+        "name",
+        "description",
+        "image",
+        "url",
+        "repository_url",
+        "tech_stack",
+        "is_published",
+    ]
 
 
 @admin.register(models.Education)
 class EducationAdmin(PublishableAdmin):
-    list_display = ["institution", "degree", "start_date", "end_date"]
+    list_display = ["institution", "degree"]
+    fields = [
+        "institution",
+        "degree",
+        "field_of_study",
+        "location",
+        "start_date",
+        "end_date",
+        "description",
+        "highlights",
+        "is_published",
+    ]
 
 
 @admin.register(models.Job)
 class JobAdmin(PublishableAdmin):
-    list_display = ["company", "title", "start_date", "end_date"]
+    list_display = ["company", "title"]
+    fields = [
+        "company",
+        "title",
+        "location",
+        "description",
+        "start_date",
+        "end_date",
+        "highlights",
+        "is_published",
+    ]
 
 
 @admin.register(models.Technology)
-class SkillAdmin(PublishableAdmin, OrderableAdmin):
+class TechnologyAdmin(PublishableAdmin, OrderableAdmin, ReverseRelationshipAdmin):
     list_display = ["name", "proficiency", "ordering"]
     list_editable = ["proficiency", "ordering"]
+    fields = [
+        "name",
+        "proficiency",
+        "is_published",
+    ]
+    related_fields = ["project_set"]
+    related_filter_horizontal = ["project_set"]
