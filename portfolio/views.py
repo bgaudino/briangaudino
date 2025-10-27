@@ -6,7 +6,7 @@ from django.views.generic import CreateView, TemplateView
 from django.utils.decorators import method_decorator
 
 from portfolio.forms import ContactForm
-from portfolio.models import Education, Job, Project, Technology
+from portfolio.models import Content, Education, Job, Project, Technology
 
 
 class HTMXMixin:
@@ -27,6 +27,14 @@ class CacheForeverMixin:
 
 class IndexView(HTMXMixin, CacheForeverMixin, TemplateView):
     template_name = "portfolio/index.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        try:
+            context["content"] = Content.objects.published().get(title="about").content
+        except Content.DoesNotExist:
+            context["content"] = None
+        return context
 
 
 class ProjectsView(HTMXMixin, CacheForeverMixin, TemplateView):

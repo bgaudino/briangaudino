@@ -89,3 +89,13 @@ class TechnologyAdmin(PublishableAdmin, OrderableAdmin, ReverseRelationshipAdmin
     ]
     related_fields = ["project_set"]
     related_filter_horizontal = ["project_set"]
+
+
+@admin.register(models.Content)
+class ContentAdmin(PublishableAdmin):
+    list_display = ["title"]
+    fields = [
+        "title",
+        "content",
+        "is_published",
+    ]

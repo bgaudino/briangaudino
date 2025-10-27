@@ -6,7 +6,7 @@
        alt="me"
        width="200"
        height="200">
-  <p>
-    I'm a Developer based in Chicago. As a self-taught programmer with a background in music, I bring a muli-disciplinary mindset to my work. I'm currently working as a Senior Software Engineer at Fusionbox. I specialize in Django and React, but I'm I am always excited to learn new technologies.
-  </p>
+  {% if content %}
+    <p>{{ content }}</p>
+  {% endif %}
 </section>

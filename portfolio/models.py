@@ -100,3 +100,14 @@ class Contact(models.Model):
 
     def __str__(self):
         return f"Contact from {self.name} ({self.email})"
+
+
+class Content(PublishableModel):
+    title = models.CharField(unique=True)
+    content = models.TextField()
+
+    class Meta:
+        verbose_name_plural = "Content"
+
+    def __str__(self):
+        return self.title
