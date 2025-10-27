@@ -6,7 +6,7 @@ from django.views.generic import CreateView, TemplateView
 from django.utils.decorators import method_decorator
 
 from portfolio.forms import ContactForm
-from portfolio.models import Education, Job, Project, Skill
+from portfolio.models import Education, Job, Project, Technology
 
 
 class HTMXMixin:
@@ -45,7 +45,7 @@ class ResumeView(HTMXMixin, CacheForeverMixin, TemplateView):
         context = super().get_context_data(**kwargs)
         context["jobs"] = Job.objects.published()
         context["educations"] = Education.objects.published()
-        context["skills"] = Skill.objects.published()
+        context["skills"] = Technology.objects.published()
         return context
 
 

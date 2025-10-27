@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     "admin_ordering",
     "ai_chat",
     "ai_chat.prompts",
+    "django_jsonform",
     "portfolio",
 ]
 

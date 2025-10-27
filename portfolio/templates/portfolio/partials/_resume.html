@@ -9,7 +9,16 @@
         <summary>
           <strong>{{ job.company }}</strong> - {{ job.title }}
         </summary>
-        <p>{{ job.description }}</p>
+        {% if job.description %}
+          <p>{{ job.description }}</p>
+        {% endif %}
+        {% if job.highlights %}
+          <ul>
+            {% for highlight in job.highlights %}
+              <li>{{ highlight }}</li>
+            {% endfor %}
+          </ul>
+        {% endif %}
       </details>
       <hr>
     {% endfor %}
@@ -23,7 +32,16 @@
         <summary>
           <strong>{{ education.institution }}</strong> - {{ education.degree }}
         </summary>
-        <p>{{ education.description }}</p>
+        {% if education.description %}
+          <p>{{ education.description }}</p>
+        {% endif %}
+        {% if education.highlights %}
+          <ul>
+            {% for highlight in education.highlights %}
+              <li>{{ highlight }}</li>
+            {% endfor %}
+          </ul>
+        {% endif %}
       </details>
       <hr>
     {% endfor %}

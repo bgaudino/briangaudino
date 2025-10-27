@@ -6,6 +6,7 @@ dependencies = [
     "dj-database-url>=3.0.1",
     "django-admin-ordering>=0.20.0",
     "django-ai-chat",
+    "django-jsonform>=2.23.2",
     "django>=5.2",
     "google-genai>=1.46.0",
     "psycopg>=3.2.12",
