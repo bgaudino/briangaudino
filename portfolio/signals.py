@@ -1,6 +1,6 @@
 from django.core.cache import cache
 from django.db.models import Model
-from django.db.models.signals import post_save
+from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
 
 from portfolio import models
@@ -14,7 +14,7 @@ models_to_clear_cache_for = [
 ]
 
 
-@receiver(post_save)
+@receiver([post_save, post_delete])
 def clear_cache(sender, **kwargs):
     if sender in models_to_clear_cache_for:
         cache.clear()
