@@ -69,9 +69,21 @@ a i {
   grid-template-columns: repeat(2, 1fr);
 }
 
+.mobile {
+  display: none;
+}
+
 @media (max-width: 720px) {
   .grid {
     grid-template-columns: 1fr;
+  }
+
+  .desktop {
+    display: none;
+  }
+
+  .mobile {
+    display: block;
   }
 }
 
@@ -85,4 +97,13 @@ a i {
   width: 0;
   transition: 1s !important;
   background-color: var(--pico-primary-background);
+}
+
+#mobile-menu > summary::after {
+  display: none;
+}
+
+#mobile-menu > summary {
+  border: none;
+  color: inherit;
 }
