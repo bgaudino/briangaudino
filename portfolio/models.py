@@ -66,7 +66,7 @@ class Project(PublishableModel, OrderableModel):
     description = models.TextField()
     url = models.URLField(blank=True)
     repository_url = models.URLField(blank=True)
-    image = models.CharField(blank=True)
+    image = models.ImageField(blank=True)
     tech_stack = models.ManyToManyField(Technology, blank=True)
 
     class Meta(OrderableModel.Meta):
