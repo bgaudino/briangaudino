@@ -25,12 +25,12 @@
         <p>{{ project.description }}</p>
         <div class="actions">
           {% if project.url %}
-            <a role="button" href="{{ project.url }}" target="_blank">View Project
+            <a class="small" role="button" href="{{ project.url }}" target="_blank">Project
               <i class="fa-solid fa-external-link-alt"></i>
             </a>
           {% endif %}
           {% if project.repository_url %}
-            <a role="button" href="{{ project.repository_url }}" target="_blank">View Code <i class="fa-brands fa-github"></i></a>
+            <a class="small" role="button" href="{{ project.repository_url }}" target="_blank">Code <i class="fa-brands fa-github"></i></a>
           {% endif %}
         </div>
       </article>

@@ -3,18 +3,27 @@ nav a {
   color: inherit;
 }
 
-a i {
-  margin-left: 0.5rem;
+#projects article {
+  position: relative;
+  padding-bottom: 3rem;
 }
 
 #projects article .actions {
   display: flex;
   justify-content: space-between;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1rem;
+}
+
+#projects article figure {
+  margin-bottom: 1rem;
 }
 
 #projects article p {
-  margin-top: 1rem;
-  min-height: 5rem;
+  margin-bottom: 1rem;
 }
 
 #projects article h3 {
@@ -66,14 +75,25 @@ a i {
 }
 
 .grid {
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
 }
 
 .mobile {
   display: none;
 }
 
-@media (max-width: 720px) {
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+button.small, [role="button"].small {
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+}
+
+@media (max-width: 768px) {
   .grid {
     grid-template-columns: 1fr;
   }
