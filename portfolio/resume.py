@@ -5,11 +5,12 @@ from ai_chat.prompts.models import SystemPrompt
 from weasyprint import HTML
 
 from portfolio import models
+from portfolio.constants import AI_CHAT_CACHE_KEY, RESUME_CACHE_KEY
 from portfolio.decorators import cache_result
 
 
 class ResumeBuilder:
-    @cache_result("resume_chat_context")
+    @cache_result(AI_CHAT_CACHE_KEY)
     def generate_chat_context(self):
         system_prompt = SystemPrompt.objects.first()
         prompt = system_prompt.content if system_prompt else ""
@@ -54,7 +55,7 @@ class ResumeBuilder:
         }
         return context
 
-    @cache_result("resume_pdf")
+    @cache_result(RESUME_CACHE_KEY)
     def generate_pdf(self, request):
         context = self.generate_pdf_context()
         html_content = render_to_string("documents/resume.html", context)
