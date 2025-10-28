@@ -2,25 +2,31 @@
   <h2>Projects</h2>
   <div class="grid">
     {% for project in projects %}
+      {% firstof project.url project.repository_url as primary_url %}
       <article>
         <h3>
-          {% if project.url %}
-            <a class="code-wrapper" href="{{ project.url }}" target="_blank"><strong>{{ project.name }}</strong></a>
-          {% elif project.repository_url %}
-            <a class="code-wrapper"
-               href="{{ project.repository_url }}"
-               target="_blank"><strong>{{ project.name }}</strong></a>
+          {% if primary_url %}
+            <a class="code-wrapper" href="{{ primary_url }}" target="_blank"><strong>{{ project.name }}</strong></a>
           {% else %}
             <strong>{{ project.name }}</strong>
           {% endif %}
         </h3>
         {% if project.image %}
           <figure>
-            <img src="{{ project.image.url }}"
-                 alt="{{ project.name }} image"
-                 height="auto"
-                 width="100%">
-          </figure>
+            {% if primary_url %}
+              <a href="{{ primary_url }}" target="_blank">
+                <img src="{{ project.image.url }}"
+                     alt="{{ project.name }} image"
+                     height="auto"
+                     width="100%">
+              </a>
+            {% else %}
+              <img src="{{ project.image.url }}"
+                   alt="{{ project.name }} image"
+                   height="auto"
+                   width="100%">
+            </figure>
+          {% endif %}
         {% endif %}
         <p>{{ project.description }}</p>
         <div class="actions">

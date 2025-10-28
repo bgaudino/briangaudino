@@ -8,6 +8,10 @@ nav a {
   padding-bottom: 3rem;
 }
 
+#projects article:hover {
+  background-color: var(--pico-secondary-focus);
+}
+
 #projects article .actions {
   display: flex;
   justify-content: space-between;
@@ -28,12 +32,6 @@ nav a {
 
 #projects article h3 {
   text-align: center;
-}
-
-#projects article figure {
-  width: 100%;
-  display: flex;
-  justify-content: center;
 }
 
 #projects article figure img {
