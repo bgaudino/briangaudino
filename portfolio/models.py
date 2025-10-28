@@ -131,3 +131,6 @@ class PersonalInfo(PublishableModel):
         verbose_name = "Personal Information"
         verbose_name_plural = "Personal Information"
         ordering = ["-created_at"]
+
+    def __str__(self):
+        return self.name

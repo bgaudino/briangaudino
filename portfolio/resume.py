@@ -29,14 +29,14 @@ class ResumeBuilder:
 
     def generate_pdf_context(self):
         personal_info = models.PersonalInfo.objects.first()
-        contact = [
+        contact = ([
             getattr(personal_info, field)
             for field in [
                 "email",
                 "phone",
             ]
             if getattr(personal_info, field)
-        ] + personal_info.links
+        ] + personal_info.links) if personal_info else []
         context = {
             "personal_info": personal_info,
             "contact": contact,
