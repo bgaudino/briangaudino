@@ -74,7 +74,7 @@ nav a {
   border-radius: 50%;
 }
 
-.grid {
+#projects .grid {
   grid-template-columns: repeat(3, 1fr);
 }
 
@@ -83,7 +83,7 @@ nav a {
 }
 
 @media (max-width: 1024px) {
-  .grid {
+  #projects .grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
@@ -94,7 +94,7 @@ button.small, [role="button"].small {
 }
 
 @media (max-width: 768px) {
-  .grid {
+  #projects .grid {
     grid-template-columns: 1fr;
   }
 
