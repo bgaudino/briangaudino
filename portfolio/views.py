@@ -1,6 +1,7 @@
 from pathlib import Path
 
 from django.core.cache import cache
+from django.http import HttpResponse
 from django.views.decorators.cache import cache_page
 from django.views.decorators.vary import vary_on_headers
 from django.views.generic import CreateView, TemplateView
@@ -33,6 +34,10 @@ class IndexView(HTMXMixin, CacheForeverMixin, TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        from .resume import ResumeBuilder
+
+        resume = ResumeBuilder()
+        print(resume.generate_chat_context())
         try:
             context["content"] = Content.objects.published().get(title="about").content
         except Content.DoesNotExist:
@@ -71,6 +76,10 @@ CHAT_CACHE_KEY = "custom_ai_chat_system_prompt"
 
 class CustomChatView(AIChatView):
     def get_system_prompt(self):
+        from .resume import ResumeBuilder
+
+        resume = ResumeBuilder()
+        return resume.generate_chat_context()
         from django.forms.models import model_to_dict
 
         prompt = cache.get(CHAT_CACHE_KEY)
@@ -85,3 +94,14 @@ class CustomChatView(AIChatView):
                 prompt += str(model_to_dict(item)) + "\n"
         cache.set(CHAT_CACHE_KEY, prompt)
         return prompt
+
+
+class DownloadResumeView(TemplateView):
+    def get(self, request, *args, **kwargs):
+        from .resume import ResumeBuilder
+
+        resume = ResumeBuilder()
+        pdf_file = resume.generate_pdf(request)
+        response = HttpResponse(pdf_file, content_type="application/pdf")
+        response["Content-Disposition"] = 'filename="Brian Gaudino.pdf"'
+        return response

@@ -111,3 +111,23 @@ class Content(PublishableModel):
 
     def __str__(self):
         return self.title
+
+
+class PersonalInfo(PublishableModel):
+    name = models.CharField()
+    title = models.CharField()
+    email = models.EmailField()
+    phone = models.CharField(blank=True)
+    summary = models.TextField(blank=True)
+    street_address = models.CharField(blank=True)
+    city = models.CharField(blank=True)
+    state = models.CharField(blank=True)
+    zip_code = models.CharField(blank=True)
+    links = ArrayField(models.URLField(), default=list, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = "Personal Information"
+        verbose_name_plural = "Personal Information"
+        ordering = ["-created_at"]

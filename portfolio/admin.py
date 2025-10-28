@@ -99,3 +99,31 @@ class ContentAdmin(PublishableAdmin):
         "content",
         "is_published",
     ]
+
+
+@admin.register(models.Interest)
+class InterestAdmin(PublishableAdmin):
+    list_display = ["name"]
+    fields = [
+        "name",
+        "description",
+        "is_published",
+    ]
+
+
+@admin.register(models.PersonalInfo)
+class PersonalInfoAdmin(PublishableAdmin):
+    list_display = ["name", "created_at"]
+    fields = [
+        "name",
+        "title",
+        "email",
+        "phone",
+        "summary",
+        "street_address",
+        "city",
+        "state",
+        "zip_code",
+        "links",
+        "is_published",
+    ]

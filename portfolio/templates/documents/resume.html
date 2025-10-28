@@ -1,0 +1,73 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>{{ personal_info.name }} - Resume</title>
+    <link rel="stylesheet" href="{% static 'css/resume.css' %}" />
+  </head>
+  <body>
+    <div class="resume">
+      <header>
+        <h1>{{ personal_info.name }}</h1>
+        <p class="subtitle">{{ personal_info.title }}</p>
+        <p class="contact">
+          {% for item in contact %}
+            {{ item }}
+            {% if not forloop.last %}•{% endif %}
+          {% endfor %}
+        </p>
+      </header>
+      {% if personal_info.summary %}
+        <section>
+          <h2>Summary</h2>
+          <p>{{ personal_info.summary }}</p>
+        </section>
+      {% endif %}
+      {% if jobs %}
+        <section>
+          <h2>Experience</h2>
+          {% for job in jobs %}
+            <div class="item">
+              <h3>
+                {{ job.title }} <span>— {{ job.company }}</span>
+              </h3>
+              <p class="date">{{ job.start_date.year }} - {% firstof job.end_date.year 'Present' %}</p>
+              {% if job.highlights %}
+                <ul>
+                  {% for highlight in job.highlights %}<li>{{ highlight }}</li>{% endfor %}
+                </ul>
+              {% endif %}
+            </div>
+          {% endfor %}
+        </section>
+      {% endif %}
+      {% if education %}
+        <section>
+          <h2>Education</h2>
+          {% for school in education %}
+            <div class="item">
+              <h3>
+                {{ school.institution }} <span>— {{ school.degree }}</span>
+              </h3>
+              <p class="date">{{ school.start_date.year }} - {% firstof school.end_date.year 'Present' %}</p>
+              {% if school.highlights %}
+                <ul>
+                  {% for highlight in school.highlights %}<li>{{ highlight }}</li>{% endfor %}
+                </ul>
+              {% endif %}
+            </div>
+          {% endfor %}
+        </section>
+      {% endif %}
+      {% if skills %}
+        <section>
+          <h2>Skills</h2>
+          <ul class="skills">
+            {% for skill in skills %}<li>{{ skill.name }}</li>{% endfor %}
+          </ul>
+        </section>
+      {% endif %}
+    </div>
+  </body>
+</html>
