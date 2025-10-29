@@ -1,10 +1,14 @@
 {% load static %}
-<section id="hero">
-  <h1>Hi, I'm Brian</h1>
+<section id="landing">
   <img class="headshot"
        src="{% static 'images/me-small.jpg' %}"
-       alt="me"
+       alt="Brian Gaudino headshot"
        width="200"
        height="200">
-  {% if content %}<p>{{ content }}</p>{% endif %}
+  <h1>Brian Gaudino</h1>
+  {% if tagline %}<p class="tagline">{{ tagline.content }}</p>{% endif %}
+  <a href="{% url 'projects' %}"
+     hx-get="{% url 'projects' %}"
+     role="button"
+     class="pulse outline">See my work <i class="fa-solid fa-arrow-right"></i></a>
 </section>

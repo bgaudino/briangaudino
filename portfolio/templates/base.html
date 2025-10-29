@@ -15,30 +15,16 @@
     <script src="{% static 'js/skills.js' %}" defer></script>
     {% block extrahead %}{% endblock %}
   </head>
-  <body>
+  <body hx-target="main" hx-swap="innerHTML" hx-push-url="true">
     <header class="container">
-      <nav hx-target="main" hx-swap="innerHTML" hx-push-url="true">
+      <nav>
         <ul>
           <li>
             <a href="{% url 'index' %}" hx-get="{% url 'index' %}"><strong>Brian Gaudino</strong></a>
           </li>
         </ul>
         <ul>
-          <li class="desktop">
-            <a class="code-wrapper"
-               href="{% url 'projects' %}"
-               hx-get="{% url 'projects' %}">Projects</a>
-          </li>
-          <li class="desktop">
-            <a class="code-wrapper"
-               href="{% url 'resume' %}"
-               hx-get="{% url 'resume' %}">Resume</a>
-          </li>
-          <li class="desktop">
-            <a class="code-wrapper"
-               href="{% url 'contact' %}"
-               hx-get="{% url 'contact' %}">Contact</a>
-          </li>
+          {% include "portfolio/partials/_navlinks.html" with class_name="desktop" %}
           <li>
             <a href="#" id="theme-toggle"><i class="fa-solid fa-circle-half-stroke"></i></a>
           </li>
@@ -48,21 +34,7 @@
                 <i class="fa-solid fa-bars"></i>
               </summary>
               <ul dir="rtl">
-                <li>
-                  <a class="code-wrapper"
-                     href="{% url 'projects' %}"
-                     hx-get="{% url 'projects' %}">Projects</a>
-                </li>
-                <li>
-                  <a class="code-wrapper"
-                     href="{% url 'resume' %}"
-                     hx-get="{% url 'resume' %}">Resume</a>
-                </li>
-                <li>
-                  <a class="code-wrapper"
-                     href="{% url 'contact' %}"
-                     hx-get="{% url 'contact' %}">Contact</a>
-                </li>
+                {% include "portfolio/partials/_navlinks.html" with class_name="mobile" %}
               </ul>
             </details>
           </li>

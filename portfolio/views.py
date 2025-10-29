@@ -30,16 +30,28 @@ class CacheForeverMixin:
         return super().dispatch(request, *args, **kwargs)
 
 
-class IndexView(HTMXMixin, CacheForeverMixin, TemplateView):
-    template_name = "portfolio/index.html"
+class ContentView(HTMXMixin, CacheForeverMixin, TemplateView):
+    template_name = "portfolio/content.html"
+    content_name = None
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        if not self.content_name:
+            raise ValueError("content_name must be set for ContentView")
 
     def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        try:
-            context["content"] = Content.objects.published().get(title="about").content
-        except Content.DoesNotExist:
-            context["content"] = None
-        return context
+        content = Content.objects.published().filter(title=self.content_name).first()
+        kwargs["content"] = kwargs[self.content_name] = content
+        return super().get_context_data(**kwargs)
+
+
+class IndexView(ContentView):
+    template_name = "portfolio/index.html"
+    content_name = "tagline"
+
+
+class AboutView(ContentView):
+    content_name = "about"
 
 
 class ProjectsView(HTMXMixin, CacheForeverMixin, TemplateView):
