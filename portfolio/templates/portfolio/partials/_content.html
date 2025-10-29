@@ -1,3 +1,4 @@
+{% include "portfolio/partials/_title.html" with title=content.title %}
 <h1>{{ content.title|title }}</h1>
 <section id="{{ content.title|lower }}">
   <p>{{ content.content }}</p>

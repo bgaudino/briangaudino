@@ -1,0 +1,6 @@
+{% if request.is_htmx %}
+  <title>
+    {% if title %}{{ title|title }} -{% endif %}
+    Brian Gaudino
+  </title>
+{% endif %}
