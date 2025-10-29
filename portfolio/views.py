@@ -8,7 +8,7 @@ from django.views.decorators.cache import cache_page
 from django.views.decorators.vary import vary_on_headers
 from django.views.generic import CreateView, TemplateView
 
-from portfolio.forms import ContactForm
+from portfolio.forms import ContactForm, ProjectFilterForm
 from portfolio.models import Content, Education, Job, Project, Technology
 from portfolio.resume import ResumeBuilder
 
@@ -58,11 +58,19 @@ class AboutView(ContentView):
 class ProjectsView(HTMXMixin, CacheForeverMixin, TemplateView):
     template_name = "portfolio/projects.html"
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["projects"] = Project.objects.published().prefetch_related(
+    def get_queryset(self):
+        qs = Project.objects.published().prefetch_related(
             Prefetch("tech_stack", queryset=Technology.objects.exclude(icon=""))
         )
+        form = ProjectFilterForm(self.request.GET)
+        if form.is_valid() and (technology := form.cleaned_data.get("technology")):
+            qs = qs.filter(tech_stack=technology)
+        return qs
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["filter_form"] = ProjectFilterForm(self.request.GET)
+        context["projects"] = self.get_queryset()
         return context
 
 

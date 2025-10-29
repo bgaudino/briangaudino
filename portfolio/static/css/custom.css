@@ -120,6 +120,22 @@ button.small,
 
 /* Projects */
 
+#projects hgroup {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#projects hgroup select {
+  padding: 0.5rem;
+  font-size: 0.75rem;
+  border-radius: 0.25rem;
+}
+
+#projects hgroup label {
+  font-size: 0.75rem;
+}
+
 #projects article {
   position: relative;
   padding-bottom: 3rem;
