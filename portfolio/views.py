@@ -1,5 +1,6 @@
 from pathlib import Path
 
+from django.db.models import Prefetch
 from django.http import HttpResponse
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
@@ -59,7 +60,9 @@ class ProjectsView(HTMXMixin, CacheForeverMixin, TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["projects"] = Project.objects.published()
+        context["projects"] = Project.objects.published().prefetch_related(
+            Prefetch("tech_stack", queryset=Technology.objects.exclude(icon=""))
+        )
         return context
 
 

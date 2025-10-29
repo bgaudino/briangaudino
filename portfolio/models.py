@@ -53,6 +53,7 @@ class Technology(PublishableModel, OrderableModel):
     proficiency = models.IntegerField(
         validators=[MinValueValidator(0), MaxValueValidator(10)]
     )
+    icon = models.CharField(blank=True)
 
     class Meta(OrderableModel.Meta):
         verbose_name_plural = "Technologies"

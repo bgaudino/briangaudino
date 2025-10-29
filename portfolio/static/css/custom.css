@@ -143,7 +143,7 @@ button.small,
   margin-bottom: 1rem;
 }
 
-#projects article p {
+#projects article .body {
   margin-bottom: 1rem;
 }
 
@@ -177,6 +177,12 @@ button.small,
   .mobile {
     display: block;
   }
+}
+
+.tech-stack {
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
 }
 
 /* Resume  */

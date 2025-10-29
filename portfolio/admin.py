@@ -85,6 +85,7 @@ class TechnologyAdmin(PublishableAdmin, OrderableAdmin, ReverseRelationshipAdmin
     fields = [
         "name",
         "proficiency",
+        "icon",
         "is_published",
     ]
     related_fields = ["project_set"]
