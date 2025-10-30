@@ -145,7 +145,7 @@ button.small,
   background-color: var(--pico-secondary-focus);
 }
 
-#projects article .actions {
+#projects article .actions, .tech-stack {
   display: flex;
   justify-content: space-between;
   position: absolute;
@@ -160,7 +160,7 @@ button.small,
 }
 
 #projects article .body {
-  margin-bottom: 1rem;
+  margin-bottom: 2.5rem;
 }
 
 #projects article h3 {
@@ -199,6 +199,8 @@ button.small,
   display: flex;
   width: 100%;
   justify-content: space-evenly;
+  bottom: 54px;
+  color: var(--pico-secondary);
 }
 
 /* Resume  */
