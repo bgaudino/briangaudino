@@ -15,6 +15,9 @@ urlpatterns = [
         "resume/download/", views.DownloadResumeView.as_view(), name="download_resume"
     ),
     path("contact/", views.ContactView.as_view(), name="contact"),
+    path(
+        "contact/success/", views.ContactSuccessView.as_view(), name="contact_success"
+    ),
     path("ai_chat/", views.CustomChatView.as_view(), name="chat"),
     path("ai_chat/", include("ai_chat.urls")),
     path("admin/", admin.site.urls),

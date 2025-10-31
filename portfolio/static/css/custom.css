@@ -221,3 +221,10 @@ button.small,
   transition: 1s !important;
   background-color: var(--pico-primary-background);
 }
+
+/* Contact */
+
+#contact {
+  max-width: 960px;
+  margin: 0 auto;
+}

@@ -88,7 +88,11 @@ class ResumeView(HTMXMixin, CacheForeverMixin, TemplateView):
 class ContactView(HTMXMixin, CreateView):
     template_name = "portfolio/contact.html"
     form_class = ContactForm
-    success_url = reverse_lazy("index")
+    success_url = reverse_lazy("contact_success")
+
+
+class ContactSuccessView(HTMXMixin, CacheForeverMixin, TemplateView):
+    template_name = "portfolio/contact_success.html"
 
 
 class CustomChatView(AIChatView):

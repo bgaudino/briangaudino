@@ -1,8 +1,12 @@
 {% include "portfolio/partials/_title.html" with title="Contact" %}
 <section>
-  <h2>Contact Me</h2>
-  <article>
-    <form method="post">
+  <article id="contact">
+    <header>
+      <h1>Contact</h1>
+    </header>
+    <form method="post"
+          action="{% url 'contact' %}"
+          hx-post="{% url 'contact' %}">
       {% csrf_token %}
       <div class="grid">
         <div>
