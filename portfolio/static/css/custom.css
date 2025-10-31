@@ -145,7 +145,8 @@ button.small,
   background-color: var(--pico-secondary-focus);
 }
 
-#projects article .actions, .tech-stack {
+#projects article .actions,
+.tech-stack {
   display: flex;
   justify-content: space-between;
   position: absolute;
@@ -200,6 +201,11 @@ button.small,
   width: 100%;
   justify-content: space-evenly;
   bottom: 54px;
+}
+
+.tech-stack [data-tooltip]:not(a, button, input, [role='button']) {
+  border-bottom: none;
+  cursor: unset;
 }
 
 /* Resume  */
