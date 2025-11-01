@@ -1,5 +1,6 @@
 from pathlib import Path
 
+from django.conf import settings
 from django.db.models import Prefetch
 from django.http import HttpResponse
 from django.urls import reverse_lazy
@@ -89,6 +90,15 @@ class ContactView(HTMXMixin, CreateView):
     template_name = "portfolio/contact.html"
     form_class = ContactForm
     success_url = reverse_lazy("contact_success")
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        if context["form"].errors:
+            context["recaptcha_errors"] = (
+                context["form"].errors.as_data().get("g-recaptcha-response", [])
+            )
+        context["recaptcha_site_key"] = settings.GOOGLE_RECAPTCHA_SITE_KEY
+        return context
 
 
 class ContactSuccessView(HTMXMixin, CacheForeverMixin, TemplateView):

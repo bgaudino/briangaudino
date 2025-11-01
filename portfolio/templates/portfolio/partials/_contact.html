@@ -1,5 +1,6 @@
 {% include "portfolio/partials/_title.html" with title="Contact" %}
 <section>
+  {{ recaptcha_site_key|json_script:"recaptha_site_key" }}
   <article id="contact">
     <header>
       <h1>Contact</h1>
@@ -23,6 +24,8 @@
       {{ form.message.label_tag }}
       {{ form.message }}
       {% for error in form.message.errors %}<small>{{ error }}</small>{% endfor %}
+      <div id="g-recaptcha" class="g-recaptcha" data-sitekey="6LesjP4rAAAAAGI6TzycqTzxmXiQADYR63f6pqE2"></div>
+      {% for error in recaptcha_errors %}<small>{{ error.message }}</small>{% endfor %}
       <button type="submit">Send Message</button>
     </form>
   </article>

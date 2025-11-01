@@ -228,3 +228,7 @@ button.small,
   max-width: 960px;
   margin: 0 auto;
 }
+
+.g-recaptcha {
+  margin: 1rem 0;
+}

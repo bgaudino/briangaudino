@@ -145,13 +145,26 @@ MEDIA_URL = "/media/"
 CONTENT_SECURITY_POLICY = {
     "DIRECTIVES": {
         "default-src": [SELF],
+        "script-src": [
+            SELF,
+            "https://www.google.com/recaptcha/api.js",
+            "https://www.gstatic.com/recaptcha/",
+        ],
         "style-src": [
             SELF,
             "https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css",
             "'sha256-faU7yAF8NxuMTNEwVmBz+VcYeIoBQ2EMHW3WaVxCvnk='",  # htmx inline style
         ],
+        "connect-src": [
+            SELF,
+            "https://www.google.com/recaptcha/",
+        ],
         "img-src": [SELF, "data:", "briangaudino-portfolio.s3.amazonaws.com"],
         "frame-ancestors": [SELF],
+        "frame-src": [SELF, "https://www.google.com/"],
         "form-action": [SELF],
     },
 }
+
+GOOGLE_RECAPTCHA_SITE_KEY = os.getenv("GOOGLE_RECAPTCHA_SITE_KEY")
+GOOGLE_RECAPTCHA_SECRET_KEY = os.getenv("GOOGLE_RECAPTCHA_SECRET_KEY")

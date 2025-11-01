@@ -1,6 +1,24 @@
+import os
+
 from django import forms
+from django.conf import settings
+
+import requests
 
 from portfolio.models import Contact, Technology
+
+
+def google_captcha_validator(value):
+    response = requests.post(
+        "https://www.google.com/recaptcha/api/siteverify",
+        data={
+            "secret": settings.GOOGLE_RECAPTCHA_SECRET_KEY,
+            "response": value,
+        },
+    )
+
+    if not response.json().get("success"):
+        raise forms.ValidationError("Invalid reCAPTCHA")
 
 
 class ContactForm(forms.ModelForm):
@@ -10,6 +28,14 @@ class ContactForm(forms.ModelForm):
         widgets = {
             "message": forms.Textarea(attrs={"rows": 3}),
         }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields["g-recaptcha-response"] = forms.fields.CharField(
+            widget=forms.HiddenInput,
+            validators=[google_captcha_validator],
+            required=True,
+        )
 
 
 class ProjectFilterForm(forms.Form):
