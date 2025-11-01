@@ -51,14 +51,22 @@ function getIconClass(theme) {
   }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+function attachToggleEvent() {
+  setTheme(theme); // Ensure the theme is set on load
   const toggle = document.querySelector('#theme-toggle');
   if (toggle) {
-    setTheme(theme);
     toggle.addEventListener('click', (e) => {
       e.preventDefault();
       theme = nextTheme(theme);
       setTheme(theme);
     });
+  }
+}
+
+document.addEventListener('DOMContentLoaded', attachToggleEvent);
+document.addEventListener('htmx:afterSwap', (e) => {
+  // Re-initialize theme toggle after browser back/forward navigation
+  if (e.detail.elt === document.body) {
+    attachToggleEvent();
   }
 });
