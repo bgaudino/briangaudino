@@ -499,7 +499,7 @@ wheels = [
 [[package]]
 name = "django-ai-chat"
 version = "0.1.0"
-source = { git = "https://github.com/bgaudino/django-ai-chat#cbe23132cfebf2136360ab001d67daac1eaf8568" }
+source = { git = "https://github.com/bgaudino/django-ai-chat#0d091c3d52e355e8d0cb6ccad757c55f02ad130d" }
 dependencies = [
     { name = "django" },
     { name = "markdown" },
