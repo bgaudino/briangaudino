@@ -1,0 +1,9 @@
+{% if project.tech_stack %}
+  <div class="tech-stack">
+    {% for tech in project.tech_stack.all %}
+      <span data-tooltip="{{ tech.name }}">
+        <i class="{{ tech.icon }}" aria-label="{{ tech.name }}"></i>
+      </span>
+    {% endfor %}
+  </div>
+{% endif %}
