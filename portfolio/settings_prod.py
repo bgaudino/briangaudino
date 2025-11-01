@@ -4,7 +4,11 @@ import os
 
 DEBUG = False
 
-ALLOWED_HOSTS = ["briangaudino-b57112662916.herokuapp.com"]
+ALLOWED_HOSTS = [
+    "briangaudino.dev",
+    "www.briangaudino.dev",
+    "briangaudino-b57112662916.herokuapp.com",
+]
 
 STORAGES = {
     "default": {
