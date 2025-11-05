@@ -160,7 +160,7 @@ CONTENT_SECURITY_POLICY = {
             "https://www.google.com/recaptcha/",
         ],
         "img-src": [SELF, "data:", "briangaudino-portfolio.s3.amazonaws.com"],
-        "frame-ancestors": [SELF],
+        "frame-ancestors": [SELF, "https://www.google.com/"],
         "frame-src": [SELF, "https://www.google.com/"],
         "form-action": [SELF],
     },
