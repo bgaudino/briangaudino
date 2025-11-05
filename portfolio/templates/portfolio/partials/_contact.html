@@ -24,7 +24,9 @@
       {{ form.message.label_tag }}
       {{ form.message }}
       {% for error in form.message.errors %}<small>{{ error }}</small>{% endfor %}
-      <div id="g-recaptcha" class="g-recaptcha" data-sitekey="6LesjP4rAAAAAGI6TzycqTzxmXiQADYR63f6pqE2"></div>
+      <div id="g-recaptcha"
+           class="g-recaptcha"
+           data-sitekey="6LesjP4rAAAAAGI6TzycqTzxmXiQADYR63f6pqE2"></div>
       {% for error in recaptcha_errors %}<small>{{ error.message }}</small>{% endfor %}
       <button type="submit">Send Message</button>
     </form>

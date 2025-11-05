@@ -153,7 +153,7 @@ CONTENT_SECURITY_POLICY = {
         "style-src": [
             SELF,
             "https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css",
-            "'sha256-faU7yAF8NxuMTNEwVmBz+VcYeIoBQ2EMHW3WaVxCvnk='",  # htmx inline style
+            "'unsafe-inline'",
         ],
         "connect-src": [
             SELF,

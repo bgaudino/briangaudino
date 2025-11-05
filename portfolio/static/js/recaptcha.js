@@ -17,7 +17,7 @@ function renderRecaptcha() {
 
 document.addEventListener('htmx:afterSwap', function (e) {
   // Re-initialize reCAPTCHA after content swap
-  if (e.detail.pathInfo.responsePath === '/contact/') {
+  if (e.detail.pathInfo?.responsePath === '/contact/') {
     renderRecaptcha();
   }
 });
