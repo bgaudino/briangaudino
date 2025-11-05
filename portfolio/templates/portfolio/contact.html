@@ -1,5 +1,12 @@
 {% extends "base.html" %}
+{% load static %}
 {% block title %}<title>Contact - Brian Gaudino</title>{% endblock %}
+{% block extrahead %}
+  <script src="{% static 'js/recaptcha.js' %}"></script>
+  <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
+          async
+          defer></script>
+{% endblock %}
 {% block content %}
   {% include "portfolio/partials/_contact.html" %}
 {% endblock %}
