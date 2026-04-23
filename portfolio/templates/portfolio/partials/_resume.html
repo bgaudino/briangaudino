@@ -9,17 +9,24 @@
       Work Experience
     </header>
     {% for job in jobs %}
-      <details>
-        <summary>
+      {% if job.highlights %}
+        <details>
+          <summary>
+            <strong>{{ job.company }}</strong> - {{ job.title }}
+          </summary>
+          {% if job.description %}<p>{{ job.description }}</p>{% endif %}
+          {% if job.highlights %}
+            <ul>
+              {% for highlight in job.highlights %}<li>{{ highlight }}</li>{% endfor %}
+            </ul>
+          {% endif %}
+        </details>
+      {% else %}
+        <p>
           <strong>{{ job.company }}</strong> - {{ job.title }}
-        </summary>
+        </p>
         {% if job.description %}<p>{{ job.description }}</p>{% endif %}
-        {% if job.highlights %}
-          <ul>
-            {% for highlight in job.highlights %}<li>{{ highlight }}</li>{% endfor %}
-          </ul>
-        {% endif %}
-      </details>
+      {% endif %}
       <hr>
     {% endfor %}
   </article>
@@ -28,17 +35,24 @@
       Education
     </header>
     {% for education in educations %}
-      <details>
-        <summary>
+      {% if education.highlights %}
+        <details>
+          <summary>
+            <strong>{{ education.institution }}</strong> - {{ education.degree }}
+          </summary>
+          {% if education.description %}<p>{{ education.description }}</p>{% endif %}
+          {% if education.highlights %}
+            <ul>
+              {% for highlight in education.highlights %}<li>{{ highlight }}</li>{% endfor %}
+            </ul>
+          {% endif %}
+        </details>
+      {% else %}
+        <p>
           <strong>{{ education.institution }}</strong> - {{ education.degree }}
-        </summary>
+        </p>
         {% if education.description %}<p>{{ education.description }}</p>{% endif %}
-        {% if education.highlights %}
-          <ul>
-            {% for highlight in education.highlights %}<li>{{ highlight }}</li>{% endfor %}
-          </ul>
-        {% endif %}
-      </details>
+      {% endif %}
       <hr>
     {% endfor %}
   </article>
